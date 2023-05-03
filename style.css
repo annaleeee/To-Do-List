@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(./img/4bjmy64xlmau32vy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
+    min-height: 100vh;
+    background-color: rgba(223, 171, 179, 0.185);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.container > h1{
+    color: #444;
+    font-weight: bold;
+}
+.input-area{
+    margin-bottom: 12px;
+}
+#add-button{
+    padding: 0 5px;
+    border-radius: 4px;
+    font-weight: bolder;
+}
+.task-area{
+    border: 1px solid #a3a1a1;
+}
+.task-tab{
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid #a3a1a1;
+}
+.task-tab div{
+    padding: 1em;
+    cursor: pointer;
+}
+#under-line{
+    position: absolute;
+    left: 0;
+    top: 53px;
+    width: 65px;
+    height: 4px;
+    padding: 0;
+    background-color: salmon;
+    transition-duration: .2s;
+}
+/* -------task-tab_end--------- */
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+.task button{
+    border-radius: 4px;
+}
+.task-done{
+    text-decoration: line-through; 
+    /* 줄이 그어짐 */
+    background-color: lightgray;
+    opacity: .8;
+}
+#task-input:focus { 
+    outline: none;
+    /* 클릭하면 선이 두꺼워지는 걸 방지함 */
+}
+
+
+
