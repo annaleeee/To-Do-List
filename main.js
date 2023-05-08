@@ -92,7 +92,6 @@ function render(){ // taskList를 화면에 띄워줌
         }
     }
     document.getElementById('task-board').innerHTML = resultHTML
-    // task-board의 안쪽 HTML 내용을 resultHTML이라는 걸로 보여주게 함
 }
 
 function toggleComplete(id){
