@@ -1,26 +1,20 @@
 /*
     1. 값을 인풋에 입력
-    2. 버튼(+)을 누르면 아이템이 더해짐 / 할일 추가
+    2. 버튼(+)을 누르면 아이템이 더해짐 (할일 추가)
     3. 삭제 버튼을 누르면 할일 삭제
-    4. 체크 버튼을 누르면 할일이 끝나면서, 줄이 그어짐
+    4. 체크 버튼을 누르면 할일이 끝나면서, 줄이 그어짐 (리셋)
     5. 진행중, 완료 탭을 누르면 언더바가 이동
     6. 완료 탭에는 완료 아이템만, 진행중 탭에는 진행 중인 아이템만 보여짐
         모두 탭을 누르면 전체 아이템을 보여줌 
 */
 
-/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-</svg>  */
-
 let taskList = []
 let mode = 'all'
-let filterList = [] // 전역변수로 선언
+let filterList = []
 
 let taskInput = document.getElementById('task-input')
 let addButton = document.getElementById('add-button')
-let tabs = document.querySelectorAll('.task-tab div')
-console.log(tabs)
+let tabs = document.querySelectorAll('.task-menu div')
 
 addButton.addEventListener('click', addTask)
 taskInput.addEventListener('keyup', function(event) {
@@ -32,9 +26,10 @@ taskInput.addEventListener('focus', function() {
     taskInput.value = ''
 })
 
-for(let i = 1; i < tabs.length; i++){ // 첫번째 div인 underline은 필요 없기 때문에 1부터 시작
-    tabs[i].addEventListener('click', function(event){filter(event)})
-                    // event에 있는 target을 filter에 줌
+for(let i = 1; i < tabs.length; i++){ 
+    tabs[i].addEventListener('click', function(event){
+        filter(event)
+    })
 }
 
 function addTask(){
@@ -63,8 +58,9 @@ function render(){ // taskList를 화면에 띄워줌
                 <div class="task-done">${list[i].taskContent}</div>
                 <div>
                     <button onclick="toggleComplete('${list[i].id}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-                            <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
                         </svg>
                     </button> 
                     <button onclick="deleteTask('${list[i].id}')">
@@ -75,7 +71,7 @@ function render(){ // taskList를 화면에 띄워줌
                 </div>
             </div>
         `
-        } else { // true면 밑줄이 그어지고, false면 원래대로 출력
+        } else { 
             resultHTML += `
             <div class="task">
                 <div>${list[i].taskContent}</div>
@@ -103,12 +99,11 @@ function toggleComplete(id){
     console.log(id)
     for(let i = 0; i < taskList.length; i++){
         if(taskList[i].id == id){
-            taskList[i].isComplete = !taskList[i].isComplete // not 연산자 
-            // 지금 있는 값을 반대로 뒤집음 (토글) (다시 체크하면 밑줄이 없어져야 하므로)
+            taskList[i].isComplete = !taskList[i].isComplete
             break
         }
     }
-    render() // 함수 호출 잊지말기
+    filter()
 }
 
 function deleteTask(id){
@@ -124,36 +119,34 @@ function deleteTask(id){
             break
         }
     }
-    render()
+    filter()
 }
 
 function filter(event){
     filterList = []
-    mode = event.target.id // 어떤 걸 클릭했는지 알고 싶을 때 target 속성 사용
-    document.getElementById('under-line').style.width = event.target.offsetWidth + 'px'
-    document.getElementById('under-line').style.top = '53px'
-    document.getElementById('under-line').style.left = event.target.offsetLeft + 'px'
-    // target값 만큼 underline의 너비를 늘이겠다 (진행중만 글자가 3글자기 때문)
-    if(mode == 'all'){
-        render()
-    } else if(mode == 'ongoing'){
+    if(event){
+        mode = event.target.id 
+        underLine.style.width = event.target.offsetWidth + 'px'
+        underLine.style.top = '53px'
+        underLine.style.left = event.target.offsetLeft + 'px'
+        // target 값 만큼 underLine의 너비를 조정
+    }
+    if(mode == 'ongoing'){
         for(let i = 0; i < taskList.length; i++){
             if(taskList[i].isComplete == false){
                 filterList.push(taskList[i])
             }
         }
-        render()
     } else if(mode == 'done'){
         for(let i = 0; i < taskList.length; i++){
             if(taskList[i].isComplete == true){
                 filterList.push(taskList[i])
             }
         }
-        render()
     }
-    console.log(filterList)
+    render()
 }
 
-function randomIDGenerate(){ // 각 리스트들을 구분해야 하기 때문에, 각기 다른 id명이 필요
+function randomIDGenerate(){
     return Math.random().toString(36).substr(2, 16);
 }
