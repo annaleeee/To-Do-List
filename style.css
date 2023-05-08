@@ -24,44 +24,46 @@ body{
     margin-bottom: 12px;
 }
 #add-button{
-    padding: 0 5px;
-    border-radius: 4px;
-    font-weight: bolder;
+    border-radius: .4rem;
 }
+/* -----------input-area_end----------- */
 .task-area{
     border: 1px solid #a3a1a1;
 }
-.task-tab{
+.task-menu{
     position: relative;
     display: flex;
     border-bottom: 1px solid #a3a1a1;
 }
-.task-tab div{
-    padding: 1em;
+.task-menu div{
+    padding: 1em .5em;
     cursor: pointer;
+}
+#ongoing{
+    padding-right: 20px;
+    padding-left: 20px; 
 }
 #under-line{
     position: absolute;
     left: 0;
     top: 53px;
-    width: 65px;
+    width: 55px;
     height: 4px;
     padding: 0;
     background-color: salmon;
     transition-duration: .2s;
 }
-/* -------task-tab_end--------- */
+/* -----------task-menu_end------------ */
 .task{
     display: flex;
     justify-content: space-between;
     padding: 1em;
 }
 .task button{
-    border-radius: 4px;
+    border-radius: .3rem;
 }
 .task-done{
     text-decoration: line-through; 
-    /* 줄이 그어짐 */
     background-color: lightgray;
     opacity: .8;
 }
