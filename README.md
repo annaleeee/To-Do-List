@@ -3,7 +3,7 @@ Javascript를 이용하여 간단한 To-Do-List 만들기
 
 <br>
 
-## 설계 순서
+## 설계 순서 ✔
 1) 할 일을 인풋창에 입력
 2) 추가 버튼 (+)
    - 아이템이 누적됨 (할 일 추가)
@@ -19,6 +19,14 @@ Javascript를 이용하여 간단한 To-Do-List 만들기
      
 <br>
 
-## 미리보기
-<img src="./img/all"></img>
+## 미리보기 👀
+##### [ALL]
+<img src="./img/all.png" width="80%"></img>
+
+##### [ONGOING]
+<img src="./img/ongoing.png" width="80%"></img>
+
+##### [DONE]
+<img src="./img/done.png" width="80%"></img>
+
 
