@@ -20,4 +20,5 @@ Javascript를 이용하여 간단한 To-Do-List 만들기
 <br>
 
 ## 미리보기
+<img src="./img/all"></img>
 
